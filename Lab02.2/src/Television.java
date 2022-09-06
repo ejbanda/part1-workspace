@@ -1,38 +1,64 @@
 public class Television {
 
-    private String brand;
-    private int volume;
+  public static final int MIN_VOLUME = 0;
+  public static final int MAX_VOLUME = 100;
 
-    public void turnOn(){
-        boolean isConnected = verifyInternetConnection();
-        System.out.println("The " + brand + " television is on, with a volume of " + volume);
-    }
+  private static int instanceCount = 0;
+  private String brand;
+  private int volume;
 
-    public void turnOff(){
-        System.out.println("The " + brand + " television is off");
-    }
+  public Television() {
+    instanceCount++;
+  }
 
-    public String getBrand() {
-        return brand;
-    }
+  public Television(String brand) {
+    this();
+    setBrand(brand);
+  }
 
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
+  public Television(String brand, int volume) {
+    this(brand);
+    setVolume(volume);
+  }
 
-    public int getVolume() {
-        return volume;
-    }
+  public void turnOn() {
+    boolean isConnected = verifyInternetConnection();
+    System.out.println("The " + brand + " television is on, with a volume of " + volume);
+  }
 
-    public void setVolume(int volume) {
-        this.volume = volume;
-    }
+  public void turnOff() {
+    System.out.println("The " + brand + " television is off");
+  }
 
-    private boolean verifyInternetConnection(){
-        return true;
-    }
+  public static int getInstanceCount() {
+    return instanceCount;
+  }
 
-    public String toString(){
-        return "Television: brand=" + brand + ", volume=" + volume;
+  public String getBrand() {
+    return brand;
+  }
+
+  public void setBrand(String brand) {
+    this.brand = brand;
+  }
+
+  public int getVolume() {
+    return volume;
+  }
+
+  public void setVolume(int volume) {
+    if (volume < MIN_VOLUME || volume > MAX_VOLUME) {
+      System.out.printf("%d is invalid; volume must be between %d and %d (inclusive).%n", volume, MIN_VOLUME, MAX_VOLUME);
+    } else {
+      this.volume = volume;
     }
+  }
+
+  private boolean verifyInternetConnection() {
+    return true;
+  }
+
+  public String toString() {
+    return "Television: brand=" + brand + ", volume=" + volume;
+  }
 }
