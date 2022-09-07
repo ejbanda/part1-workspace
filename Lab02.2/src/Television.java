@@ -1,3 +1,5 @@
+import java.util.Locale;
+
 public class Television {
 
   public static final int MIN_VOLUME = 0;
@@ -39,7 +41,17 @@ public class Television {
   }
 
   public void setBrand(String brand) {
-    this.brand = brand;
+
+    switch (brand){
+      case "Samsung":
+      case "LG":
+      case "Sony":
+      case "Toshiba":
+        this.brand = brand;
+        break;
+      default:
+        System.out.printf("%s is an Invalid Brand, Must be Samsung, LG, Sony, or Toshiba.%n", brand);
+    }
   }
 
   public int getVolume() {
