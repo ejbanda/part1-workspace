@@ -8,6 +8,7 @@ public class Television {
   private static int instanceCount = 0;
   private String brand;
   private int volume;
+  private DisplayType display = DisplayType.LED;
 
   public Television() {
     instanceCount++;
@@ -23,6 +24,15 @@ public class Television {
     setVolume(volume);
   }
 
+  public Television(String brand, int volume, DisplayType display){
+    this(brand, volume);
+    setDisplay(display);
+  }
+
+  public static int getInstanceCount() {
+    return instanceCount;
+  }
+
   public void turnOn() {
     boolean isConnected = verifyInternetConnection();
     System.out.println("The " + brand + " television is on, with a volume of " + volume);
@@ -30,10 +40,6 @@ public class Television {
 
   public void turnOff() {
     System.out.println("The " + brand + " television is off");
-  }
-
-  public static int getInstanceCount() {
-    return instanceCount;
   }
 
   public String getBrand() {
@@ -66,11 +72,20 @@ public class Television {
     }
   }
 
+  public DisplayType getDisplay() {
+    return display;
+  }
+
+  public void setDisplay(DisplayType display) {
+    this.display = display;
+  }
+
+
   private boolean verifyInternetConnection() {
     return true;
   }
 
   public String toString() {
-    return "Television: brand=" + brand + ", volume=" + volume;
+    return "Television: brand=" + brand + ", volume=" + volume + ", display type=" + display;
   }
 }

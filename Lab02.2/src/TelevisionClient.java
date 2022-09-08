@@ -22,8 +22,16 @@ public class TelevisionClient {
     System.out.printf("%d television instances created. %n", Television.getInstanceCount());
 
     Television tv3 = new Television("LG");
+    tv3.setDisplay(DisplayType.OLED);
 
     System.out.println(tv3);
+
+    System.out.printf("%d television instances created. %n", Television.getInstanceCount());
+
+
+    Television tv4 = new Television("Toshiba", 66, DisplayType.LCD);
+
+    System.out.println(tv4);
 
     System.out.printf("%d television instances created. %n", Television.getInstanceCount());
 
