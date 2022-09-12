@@ -18,7 +18,9 @@ class TelevisionClient {
         System.out.println(tv);
         
         // TODO: change the channel
-        
+        //Television tv2 = new Television("Sony", 99, DisplayType.OLED);
+        tv.changeChannel("HBO");
+
         System.out.println(tv);
     }
 }
