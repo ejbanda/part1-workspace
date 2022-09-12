@@ -14,6 +14,7 @@
  */
 import java.time.*;
 import java.time.format.*;
+import java.time.temporal.ChronoField;
 import java.time.temporal.TemporalAdjuster;
 import java.time.temporal.TemporalAdjusters;
 
@@ -28,9 +29,9 @@ class DerivedDateTimeTest {
     public static void main(String[] args) {
         testPresidentsFirst100Days();
         testPopularBirthdays();
-        // testEarlyRetirement();
-        // testLaborDay();
-        // testElectionDay();
+        testEarlyRetirement();
+        testLaborDay();
+        testElectionDay();
         testAnniversary();
     }
 
@@ -75,7 +76,8 @@ class DerivedDateTimeTest {
     public static void testEarlyRetirement() {
         // TODO
         LocalDate birthday = LocalDate.of(1993, 3, 31);
-
+        birthday = birthday.plusYears(59).plusMonths(6);
+        System.out.println(birthday);
     }
 
     /**
@@ -87,7 +89,11 @@ class DerivedDateTimeTest {
      */
     public static void testLaborDay() {
         // TODO
-        LocalDate laborDay = LocalDate.of(1993,3,31);
+        LocalDate laborDay = LocalDate
+            .of(1993,3,31)
+            .with(ChronoField.MONTH_OF_YEAR, 9)
+            .with(TemporalAdjusters.firstInMonth(DayOfWeek.MONDAY));
+        System.out.println(laborDay);
     }
 
     /**
@@ -98,6 +104,11 @@ class DerivedDateTimeTest {
      */
     public static void testElectionDay() {
         // TODO
+        LocalDate electionDay = LocalDate
+            .of(2021, 11, 1)
+            .with(TemporalAdjusters.firstInMonth(DayOfWeek.MONDAY))
+            .with(TemporalAdjusters.next(DayOfWeek.TUESDAY));
+        System.out.println(electionDay);
     }
 
     /**

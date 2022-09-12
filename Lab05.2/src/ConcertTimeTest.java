@@ -13,7 +13,7 @@ class ConcertTimeTest {
 
     public static void main(String[] args) {
         listAvailableZoneIds();
-        // testLiveConcert();
+        testLiveConcert();
     }
 
     /*
@@ -38,5 +38,14 @@ class ConcertTimeTest {
      */
     public static void testLiveConcert() {
         // TODO
+        TimeZone torontoZone = TimeZone.getTimeZone("America/Toronto");
+        TimeZone perthZone = TimeZone.getTimeZone("Australia/Perth");
+
+
+        LocalDateTime concertLocalTime = LocalDateTime.of(2020,6,18,19,0);
+        //LocalDateTime concertMyTime = LocalDateTime.ofInstant(concertLocalTime, ZoneId.of("Australia/Perth"));
+        LocalDateTime concertMyTime = concertLocalTime.now(perthZone.toZoneId());//only does local
+        //LocalDateTime concertMyTime = ZonedDateTime.
+        System.out.println(concertMyTime);
     }
 }
